@@ -11,7 +11,7 @@ root.geometry('1000x600')
 root.title('Photo Editor')
 root.config(bg=blue)
 
-pen = 'red'
+pen_c = 'red'
 pen = 5
 file_path = ""
 
@@ -21,6 +21,10 @@ def add_img():
     image = Image.open(file_path)
     width, height = int(image.width / 2), int(image.height / 2)
     image = image.resize((width, height), Image.ANTIALIAS)
+    canvas.config(width=image.width, height = image.height)
+    image = ImageTk.PhotoImage(image)
+    canvas.image = image 
+    canvas.create_image(0, 0, image=image, anchor='nw')
     
 
 lframe = tk.frame(root, width=200, height=600, bg='skyblue')
@@ -29,9 +33,16 @@ lframe.pack(side='left', fill='y')
 canvas = tk.Canvas(root, width=800, height=650)
 canvas.pack
 
-img_button = tk.Button(left_frame, text='Add img', bg='navy')
+img_button = tk.Button(lframe, text='Add img', bg='navy')
 img_button.pack(pady=12)
 
+def write(event):
+    x1,y1 = (event.x - pen), (event.y - pen)
+    x2,y2 = (event.x + pen), (event.y + pen)
+    canvas.create_oval(x1,y1,x2,y2, fill=pen_c, outline='')
+
+
+canvas.bind('<B1-Motion>', write)
 
 
 
