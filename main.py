@@ -42,6 +42,15 @@ colorOfButtun.pack(pady=6)
 pen_size_frame = tk.Frame(lframe, bg='yellow')
 pen_size_frame.pack(pady=4)
 
+pen_size_s = tk.Radiobutton(pen, text='Small', command=lambda: change_size(3), value=3, bg='lime')
+pen_size_s.pack(side='left')
+
+pen_size_m = tk.Radiobutton(pen, text='Meduim', value=6, command=lambda: change_size(6), bg='lime')
+pen_size_m.pack(side='left')
+
+pen_size_l = tk.Radiobutton(pen, text='Larg',command=lambda: change_size(9), value=9, bg='lime')
+pen_size_l.pack(side='left')
+
 
 def change_color():
     global pen_c
