@@ -27,11 +27,12 @@ def add_img():
     canvas.create_image(0, 0, image=image, anchor='nw')
     
     
-filter_label = tl.label(lframe, text='choose filter', bg='black')
+filter_label = tk.label(lframe, text='choose filter', bg='black')
 filter_label.pack()
 filterComboBox = ttk.Combobox(lframe, values=['Black and white', 'Blur', 'Emboss', 'Sharpen', 'smooth'])
 filterComboBox.pack()
 
+filterComboBox.bind('<<ComboboxSelected>>', lambda event: apply_filter(filterComboBox.get()))
 
 lframe = tk.frame(root, width=200, height=600, bg='skyblue')
 lframe.pack(side='left', fill='y') 
@@ -77,6 +78,23 @@ def write(event):
 def clear_canvas():
     canvas.delete('all') 
     canvas.create_image(0, 0, image=canvas.image, anchor='nw')
+    
+    
+def apply_filter(filter):
+    image = Image.open(file_path)
+    width, height = int(image.width / 2), int(image.height / 2)
+    image = image.resize((width, height), Image.ANTIALIAS)
+    if filter == 'Black and white':
+        image = ImageOps.grayscale(image)
+    elif filter == 'Blur':
+        image = image.filter(ImageFilter.BLUR)
+    elif filter == 'Sharpen':
+        image = image.filter(ImageFilter.SHARPEN)
+    elif filter == 'Smooth':
+        image = image.filter(ImageFilter.SMOOTH)
+    elif filter == 'Emboss':
+        image = image.filter(ImageFilter.EMBOSS)
+        
 
 
 canvas.bind('<B1-Motion>', write)
