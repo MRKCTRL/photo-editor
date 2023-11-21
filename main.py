@@ -9,7 +9,7 @@ from tkinter import filedialog
 root = tk.Tk()
 root.geometry('1000x600')
 root.title('Photo Editor')
-root.config(bg=blue)
+root.config(bg='blue')
 
 pen_c = 'red'
 pen = 5
@@ -36,10 +36,18 @@ canvas.pack
 img_button = tk.Button(lframe, text='Add img', bg='navy')
 img_button.pack(pady=12)
 
+colorOfButtun = tk.Button(lframe,text='Change Pencil color', command=change_color,bg='green')
+colorOfButtun.pack(pady=6)
+
+def change_color():
+    global pen_c
+    pen_c = colorchooser.askcolor(title='Select Pen Color')[1]
+
 def write(event):
-    x1,y1 = (event.x - pen), (event.y - pen)
-    x2,y2 = (event.x + pen), (event.y + pen)
+    x1, y1 = (event.x - pen), (event.y - pen)
+    x2, y2 = (event.x + pen), (event.y + pen)
     canvas.create_oval(x1,y1,x2,y2, fill=pen_c, outline='')
+    
 
 
 canvas.bind('<B1-Motion>', write)
