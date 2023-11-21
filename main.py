@@ -12,7 +12,7 @@ root.title('Photo Editor')
 root.config(bg='blue')
 
 pen_c = 'red'
-pen = 5
+pen_s = 5
 file_path = ""
 
 def add_img():
@@ -47,10 +47,17 @@ pen_size_s.pack(side='left')
 
 pen_size_m = tk.Radiobutton(pen, text='Meduim', value=6, command=lambda: change_size(6), bg='lime')
 pen_size_m.pack(side='left')
+pen_size_m.select()
 
 pen_size_l = tk.Radiobutton(pen, text='Larg',command=lambda: change_size(9), value=9, bg='lime')
 pen_size_l.pack(side='left')
 
+erase_button = tk.Button(lframe, text='erase', command=clear_canvas, bg='#FF9797')
+erase_button.pack(pady=10)
+
+def change_size(size):
+    global pen_s
+    pen_s = size
 
 def change_color():
     global pen_c
@@ -60,6 +67,9 @@ def write(event):
     x1, y1 = (event.x - pen), (event.y - pen)
     x2, y2 = (event.x + pen), (event.y + pen)
     canvas.create_oval(x1,y1,x2,y2, fill=pen_c, outline='')
+    
+def clear_canvas():
+   canvas.delete('all') 
     
 
 
