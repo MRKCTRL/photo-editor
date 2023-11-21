@@ -16,6 +16,8 @@ file_path = ""
 lframe = tk.frame(root, width=200, height=600, bg='skyblue')
 lframe.pack(side='left', fill='y') 
 
+img_button = tk.Button(left_frame, text='Add Image', bg='navy')
+img_button.pack(pady=12)
 
 
 message = input('Enter your Text here')
