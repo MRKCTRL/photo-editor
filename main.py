@@ -18,6 +18,10 @@ file_path = ""
 def add_img():
     global file_path
     file_path = filedialog.askopenfile(initialdir='/home/jabu/Pictures/')
+    image = Image.open(file_path)
+    width, height = int(image.width / 2), int(image.height / 2)
+    image = image.resize((width, height), Image.ANTIALIAS)
+    
 
 lframe = tk.frame(root, width=200, height=600, bg='skyblue')
 lframe.pack(side='left', fill='y') 
