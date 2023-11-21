@@ -39,6 +39,10 @@ img_button.pack(pady=12)
 colorOfButtun = tk.Button(lframe,text='Change Pencil color', command=change_color,bg='green')
 colorOfButtun.pack(pady=6)
 
+pen_size_frame = tk.Frame(lframe, bg='yellow')
+pen_size_frame.pack(pady=4)
+
+
 def change_color():
     global pen_c
     pen_c = colorchooser.askcolor(title='Select Pen Color')[1]
