@@ -13,6 +13,9 @@ pen = 'red'
 pen = 5
 file_path = ""
 
+lframe = tk.frame(root, width=200, height=600, bg='skyblue')
+lframe.pack(side='left', fill='y') 
+
 
 
 message = input('Enter your Text here')
