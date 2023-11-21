@@ -4,7 +4,7 @@ import tkinter as tk
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageTk, 
 from tkinter import *
 from tkinter import filedialog
-
+from tkinter import ttk
 
 root = tk.Tk()
 root.geometry('1000x600')
@@ -26,6 +26,12 @@ def add_img():
     canvas.image = image 
     canvas.create_image(0, 0, image=image, anchor='nw')
     
+    
+filter_label = tl.label(lframe, text='choose filter', bg='black')
+filter_label.pack()
+filterComboBox = ttk.Combobox(lframe, values=['Black and white', 'Blur', 'Emboss', 'Sharpen', 'smooth'])
+filterComboBox.pack()
+
 
 lframe = tk.frame(root, width=200, height=600, bg='skyblue')
 lframe.pack(side='left', fill='y') 
@@ -69,8 +75,8 @@ def write(event):
     canvas.create_oval(x1,y1,x2,y2, fill=pen_c, outline='')
     
 def clear_canvas():
-   canvas.delete('all') 
-    
+    canvas.delete('all') 
+    canvas.create_image(0, 0, image=canvas.image, anchor='nw')
 
 
 canvas.bind('<B1-Motion>', write)
