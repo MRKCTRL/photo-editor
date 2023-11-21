@@ -1,10 +1,12 @@
 # pip install Pillow
 import sys
-from PIl import Image, ImageDraw, ImageFont, ImageFilter, ImageTk
+import tkinter as tk
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageTk, 
 from tkinter import *
+from tkinter import filedialog
 
 
-root = tk.TK()
+root = tk.Tk()
 root.geometry('1000x600')
 root.title('Photo Editor')
 root.config(bg=blue)
@@ -13,11 +15,20 @@ pen = 'red'
 pen = 5
 file_path = ""
 
+def add_img():
+    global file_path
+    file_path = filedialog.askopenfile(initialdir='/home/jabu/Pictures/')
+
 lframe = tk.frame(root, width=200, height=600, bg='skyblue')
 lframe.pack(side='left', fill='y') 
 
-img_button = tk.Button(left_frame, text='Add Image', bg='navy')
+canvas = tk.Canvas(root, width=800, height=650)
+canvas.pack
+
+img_button = tk.Button(left_frame, text='Add img', bg='navy')
 img_button.pack(pady=12)
+
+
 
 
 message = input('Enter your Text here')
